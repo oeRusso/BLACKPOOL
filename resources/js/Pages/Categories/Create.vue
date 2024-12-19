@@ -8,7 +8,7 @@ export default{
     import { useForm } from '@inertiajs/vue3';
     import AppLayout from '@/Layouts/AppLayout.vue';
     import CategoryForm from '@/Components/Categories/Form.vue';
-import { route } from 'vendor/tightenco/ziggy/src/js';
+    import { route } from 'ziggy-js';
     const form = useForm({
         name:''
     });
@@ -18,7 +18,7 @@ import { route } from 'vendor/tightenco/ziggy/src/js';
     <AppLayout>
 
         <template #header>
-            <h1 class="font-semibold text-xl text-gray-800 leading-tight">Create Category</h1>
+            <h1 class="font-semibold text-xl text-gray-800 leading-tight"  v-if="$page.props.user.permissions.includes('create categories')">Create Category</h1>
         </template>
 
         <div class="py-12">
@@ -26,7 +26,7 @@ import { route } from 'vendor/tightenco/ziggy/src/js';
                 <div class="bg:white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <CategoryForm :form="form" @submit="form.post(route('Categories.store'))">
+                            <CategoryForm :form="form" @submit="form.post(route('categories.store'))">
                             </CategoryForm>
                         </div>
                     </div>

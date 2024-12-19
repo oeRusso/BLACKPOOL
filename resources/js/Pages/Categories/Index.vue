@@ -34,8 +34,8 @@ const deleteCategory = id => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex justify-between">
-                        <Link :href="route('categories.create')" class="text-white bg-indigo-500 hover:bg-indigo-700 py-2 px-4 rounded">
+                    <div class="flex justify-between"  v-if="$page.props.user.permissions.includes('create categories')">
+                        <Link :href="route('categories.create')" class="text-white bg-indigo-500 hover:bg-indigo-700 py-2 px-4 rounded" >
                         Create category
                         </Link>
                     </div>
