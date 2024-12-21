@@ -8,6 +8,7 @@ export default {
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
+import { router } from '@inertiajs/vue3'
 
 defineProps({
     categories:{
@@ -18,7 +19,7 @@ defineProps({
 
 const deleteCategory = id => {
     if(confirm("Are you sure?")){
-        Inertia.delete(route('categories.destroy', id))
+        router.delete(route('categories.destroy', id))
     }
 }
 </script>
@@ -34,7 +35,7 @@ const deleteCategory = id => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex justify-between"  v-if="$page.props.user.permissions.includes('create categories')">
+                    <div class="flex justify-between" v-if="$page.props.user.permissions.includes('create categories')">
                         <Link :href="route('categories.create')" class="text-white bg-indigo-500 hover:bg-indigo-700 py-2 px-4 rounded" >
                         Create category
                         </Link>
@@ -54,8 +55,8 @@ const deleteCategory = id => {
                                 </div>
                                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                                     <p class="text-sm/6 text-gray-900">
-                                        <Link :href="route('categories.edit', category.id)">Edit</Link>
-                                        <Link @click="deleteCategory(category.id)">Delete</Link>
+                                        <Link class="py-2 px-4" :href="route('categories.edit', category.id)" v-if="$page.props.user.permissions.includes('update categories')">Edit</Link>
+                                        <Link class="py-2 px-4" @click="deleteCategory(category.id)" v-if="$page.props.user.permissions.includes('delete categories')">Delete</Link>
                                     </p>
 
                                 </div>

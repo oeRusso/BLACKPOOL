@@ -9,16 +9,17 @@ export default{
     import AppLayout from '@/Layouts/AppLayout.vue';
     import CategoryForm from '@/Components/Categories/Form.vue';
     import { route } from 'ziggy-js';
+
     const form = useForm({
         name:''
     });
 </script>
 
 <template>
-    <AppLayout>
+    <AppLayout title="Create Category">
 
         <template #header>
-            <h1 class="font-semibold text-xl text-gray-800 leading-tight"  v-if="$page.props.user.permissions.includes('create categories')">Create Category</h1>
+            <h1 class="font-semibold text-xl text-gray-800 leading-tight"  v-if="$page.props.user.permissions.includes('create categories')">Edit Category</h1>
         </template>
 
         <div class="py-12">
